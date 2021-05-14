@@ -22,7 +22,7 @@ function setup() {
   createCanvas(800, 800);
   engine = Engine.create();
   world = engine.world;
-  ground = new Ground(232,height,1200,50);
+  ground = new Ground(232,height,1200,70);
   
   
 
