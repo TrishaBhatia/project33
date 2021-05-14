@@ -22,7 +22,9 @@ function setup() {
   createCanvas(800, 800);
   engine = Engine.create();
   world = engine.world;
-  ground = new Ground(width/2,height,width,20);
+  ground = new Ground(232,height,1200,50);
+  
+  
 
    for (var k = 0; k <=width; k = k + 80) {
      divisions.push(new Divisions(k, height-divisionHeight/2, 10, divisionHeight));
@@ -47,25 +49,29 @@ function setup() {
  
 function draw() {
   background(232, 255, 255);
+  ground.setStatic;true;
   textSize(30)
   fill("silver");
   strokeWeight(3);
   stroke("grey");
   text("Score : "+score,20,40);
-  //text(mouseX + "," + mouseY, 20, 50);
+  //text("" + mouseX, 100,100);
   textSize(30)
   text(" 500 ", 8, 550);
   text(" 500 ", 86, 550);
   text(" 500 ", 166, 550);
-  text(" 500 ", 246, 550);
+  text(" 100 ", 246, 550);
   text(" 100 ", 326, 550);
   text(" 100 ", 406, 550);
   text(" 100 ", 486, 550);
   text(" 200 ", 566, 550);
   text(" 200 ", 646, 550);
   text(" 200 ", 726, 550);
+  fill("black");
+ 
   Engine.update(engine);
   ground.display();
+ // ground.setColor("black");
   
   for (var i = 0; i < plinkos.length; i++) {
      plinkos[i].display();  
@@ -77,20 +83,34 @@ function draw() {
         
     if (particle.body.position.y>760)
      {
-       if (particle.body.position.x < 300) 
+       if (particle.body.position.x < 300 &&particle.body.position.x>0 ) 
          {
           score=score+500;  
           point.play();    
           particle=null;
-          if ( count>= 5) gameState ="end";                          
+          if ( count>= 5) gameState ="end";    
+          ground.setStatic;true;  
+                             
          }
-
+         
      else if (particle.body.position.x < 600 && particle.body.position.x > 301 ) 
      {
        score = score + 100;
        point.play();
       particle=null;
      if ( count>= 5) gameState ="end";
+     ground.setStatic;true;
+        
+     }
+     else if(particle.body.position.x>255)
+     {
+       score=score+0;
+       ground.setStatic;true;
+       
+     }
+     else if(particle.body.position.x>-2)
+     {
+       score=score+0;
      }
       else if (particle.body.position.x < 900 && particle.body.position.x > 601 )
     {
@@ -98,9 +118,13 @@ function draw() {
       point.play();
       particle=null;
       if ( count>= 5)  gameState ="end";
+        
     }      
    }
   }
+  
+
+
    for (var k = 0; k < divisions.length; k++) 
    {
      divisions[k].display();
