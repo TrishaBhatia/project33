@@ -89,7 +89,7 @@ function draw() {
           point.play();    
           particle=null;
           if ( count>= 5) gameState ="end";    
-          ground.setStatic;true;  
+            
                              
          }
          
@@ -99,13 +99,13 @@ function draw() {
        point.play();
       particle=null;
      if ( count>= 5) gameState ="end";
-     ground.setStatic;true;
+     
         
      }
      else if(particle.body.position.x>255)
      {
        score=score+0;
-       ground.setStatic;true;
+       
        
      }
      else if(particle.body.position.x>-2)
